@@ -1,0 +1,13 @@
+name: 543-crystal
+version: 0.1.0
+
+authors:
+  - Alex Brinkman <abrink@commercekitchen.com>
+
+targets:
+  543-crystal:
+    main: src/543-crystal.cr
+
+crystal: 0.27.0
+
+license: MIT
