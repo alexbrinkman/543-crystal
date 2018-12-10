@@ -2,6 +2,8 @@ module Game543
 
   class Minimax
 
+    MAX_DEPTH = 8
+
     @board : Board
 
     def initialize(board)
@@ -10,7 +12,7 @@ module Game543
 
     def search
       puts "Building tree..."
-      root_node = MinimaxNode.new(@board).build_tree(@board)
+      root_node = build_tree(@board)
 
       puts "Evaluating positions..."
       root_node = assign_node_values(root_node, :max, -10, 10)
@@ -19,6 +21,15 @@ module Game543
       bnm = best_next_move(root_node, :max)[1]
       raise ArgumentError.new("There must be a board type to continue.") if bnm.nil?
       bnm.board
+    end
+
+    private def build_tree(board, depth=0)
+      root_node = MinimaxNode.new(board)
+      return root_node if depth > MAX_DEPTH
+      board.available_moves.each do |b|
+        root_node.moves << build_tree(b, depth + 1)
+      end
+      root_node
     end
 
     private def assign_node_values(root_node, max_min, alpha, beta)

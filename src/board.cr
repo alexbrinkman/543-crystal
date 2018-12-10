@@ -34,10 +34,9 @@ module Game543
 
     def self.initial_board
       [
+        [true, true, true],
         [true, true, true, true],
-        [true, true, true, true],
-        [true, true, true, true],
-        [true, true, true]
+        [true, true, true, true, true]
       ]
     end
 
